@@ -19,11 +19,12 @@ public class ApplicationTest {
     private Application app;
 
     @Before
-    public void setUp(){
+    public void setUp() throws IOException {
         out = mock(PrintStream.class);
         biblioteca = mock(Biblioteca.class);
         menu = mock(Menu.class);
         in = mock(BufferedReader.class);
+        when(in.readLine()).thenReturn("1");
         app = new Application(in, out, biblioteca, menu);
     }
     @Test
@@ -46,16 +47,15 @@ public class ApplicationTest {
 
     @Test
     public void shouldNotifyCustomerWhenMenuSelectionIsInvalid() throws IOException {
-        when(in.readLine()).thenReturn("8");
+        when(in.readLine()).thenReturn("8", "1");
         app.start();
-        verify(out).println(contains("Select a valid option!"));
+        verify(out).println("Select a valid option!");
     }
 
     @Test
     public void shouldTakeInputAfterInvalidMenuSelection() throws IOException {
-        when(in.readLine()).thenReturn("selection");
+        when(in.readLine()).thenReturn("selection", "1");
         app.start();
-        when(in.readLine()).thenReturn("1");
         verify(in, times(2)).readLine();
     }
 

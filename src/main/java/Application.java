@@ -22,28 +22,31 @@ public class Application {
     public void start() {
         out.println("Welcome");
         menu.displayMenu();
-        handleUserInput();
+        processUserInput();
     }
 
-    private void handleUserInput() {
-        boolean invalidInput = !isMenuOption();
-        if (invalidInput){
-            invalidInput = !isMenuOption();
+    private void processUserInput() {
+        int selection = selectedOption();
+        while (selection < 1){
+            out.println("Select a valid option!");
+            selection = selectedOption();
+        }
+        if (selection == 1){
+            biblioteca.listBooks();
         }
     }
 
-    private boolean isMenuOption() {
+    private int selectedOption() {
         try {
             String selection = in.readLine();
             if (selection != null && selection.equals("1")) {
-                biblioteca.listBooks();
+                return 1;
             } else if (selection != null) {
-                out.println("Select a valid option!");
-                return false;
+                return -1;
             }
         } catch (IOException e) {
 
         }
-        return true;
+        return -1;
     }
 }
