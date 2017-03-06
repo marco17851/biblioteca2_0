@@ -24,7 +24,7 @@ public class ApplicationTest {
         biblioteca = mock(Biblioteca.class);
         menu = mock(Menu.class);
         in = mock(BufferedReader.class);
-        when(in.readLine()).thenReturn("1");
+        when(in.readLine()).thenReturn("2");
         app = new Application(in, out, biblioteca, menu);
     }
     @Test
@@ -57,6 +57,14 @@ public class ApplicationTest {
         when(in.readLine()).thenReturn("selection", "1");
         app.start();
         verify(in, times(2)).readLine();
+    }
+
+
+    @Test
+    public void shouldContinueMenuSelectionUntilQuitCommand() throws IOException {
+        when(in.readLine()).thenReturn("1", "1", "test", "2");
+        app.start();
+        verify(in, times(4)).readLine();
     }
 
 }

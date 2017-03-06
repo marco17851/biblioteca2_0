@@ -39,8 +39,8 @@ public class Application {
     private int selectedOption() {
         try {
             String selection = in.readLine();
-            if (selection != null && selection.equals("1")) {
-                return 1;
+            if (selection != null && selection.equals("1") || selection.equals("2")){
+                return Integer.parseInt(selection);
             } else if (selection != null) {
                 return -1;
             }
