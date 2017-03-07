@@ -16,7 +16,7 @@ public class Main {
 
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("1984", "George Orwell", "1983", printStream));
-        books.add(new Book("Green Eggs and Ham", "Dr. Suess", "1904", printStream));
+        books.add(new Book("Green Eggs and Ham", "Dr. Seuss", "1904", printStream));
         books.add(new Book("Sex at Dawn", "IDK", "1987", printStream));
 
         Biblioteca biblioteca = new Biblioteca(printStream, books);

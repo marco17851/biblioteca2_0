@@ -25,6 +25,7 @@ public class Biblioteca {
 
     public void checkOutBook(int choice) {
         books.remove(choice - 1);
+        out.println("Thank you! Enjoy the book");
     }
 
 }
