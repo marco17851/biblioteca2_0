@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class Biblioteca {
     private PrintStream out;
     private ArrayList<Book> books;
-    private final BufferedReader bufferedReader;
 
-    public Biblioteca(PrintStream out, BufferedReader bufferedReader, ArrayList<Book> books) {
+    public Biblioteca(PrintStream out, ArrayList<Book> books) {
         this.out = out;
         this.books = books;
-        this.bufferedReader = bufferedReader;
     }
 
     public void listBooks() {
@@ -26,17 +24,7 @@ public class Biblioteca {
 
 
     public void checkOutBook(int choice) {
-        //list books
-        readLine();
         books.remove(choice - 1);
     }
 
-    private String readLine() {
-        try {
-            return bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
 }

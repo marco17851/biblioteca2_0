@@ -38,7 +38,7 @@ public class BibliotecaTest {
         books.add(new Book("1984", "George Orwell", "1983", out));
         books.add(new Book("Green Eggs and Ham", "Dr. Seuss", "1904", out));
         books.add(new Book("Sex at Dawn", "IDK", "1987", out));
-        Biblioteca biblioteca = new Biblioteca(out, bufferedReader, books);
+        Biblioteca biblioteca = new Biblioteca(out, books);
 
         biblioteca.listBooks();
 
@@ -51,7 +51,7 @@ public class BibliotecaTest {
     public void shouldDeleteBookFromListWhenCheckingOutABook() {
         Book bookFour = new Book("","","", out);
         books.add(bookFour);
-        Biblioteca biblioteca = new Biblioteca(out, bufferedReader, books);
+        Biblioteca biblioteca = new Biblioteca(out, books);
 
         biblioteca.checkOutBook(4);
 

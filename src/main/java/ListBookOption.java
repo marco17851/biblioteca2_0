@@ -5,8 +5,8 @@ public class ListBookOption implements Option {
     private final String name;
     private final Biblioteca biblioteca;
 
-    public ListBookOption(String name, Biblioteca biblioteca) {
-        this.name = name;
+    public ListBookOption(Biblioteca biblioteca) {
+        this.name = "List Books";
         this.biblioteca = biblioteca;
     }
 

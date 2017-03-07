@@ -30,8 +30,21 @@ public class MenuTest {
     @Test
     public void shouldPrintListOptionWhenChoosingOptions() throws IOException {
         noOptionChosen();
+        Option option = mock(ListBookOption.class);
+        when(option.getName()).thenReturn("List Books");
+        choiceToOption.put("1", option);
         menu.chooseOption();
         verify(printStream).println(contains("List Books"));
+    }
+
+    @Test
+    public void shouldPrintCheckoutBookOptionWhenChoosingOptions() throws IOException {
+        noOptionChosen();
+        Option option = mock(CheckoutBookOption.class);
+        when(option.getName()).thenReturn("Checkout Book");
+        choiceToOption.put("2", option);
+        menu.chooseOption();
+        verify(printStream).println(contains("Checkout"));
     }
 
     @Test

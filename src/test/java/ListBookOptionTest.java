@@ -14,7 +14,7 @@ public class ListBookOptionTest {
     @Test
     public void shouldCallListBooksWhenExecuted() throws IOException {
         Biblioteca biblioteca = mock(Biblioteca.class);
-        ListBookOption option  = new ListBookOption("", biblioteca);
+        ListBookOption option  = new ListBookOption(biblioteca);
         option.execute();
         verify(biblioteca).listBooks();
     }
