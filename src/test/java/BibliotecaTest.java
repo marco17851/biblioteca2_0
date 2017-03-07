@@ -1,11 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
+import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.mock;
@@ -17,10 +17,17 @@ import static org.mockito.Mockito.verify;
 public class BibliotecaTest {
 
     private PrintStream out;
+    private ArrayList<Book> books;
+    private BufferedReader bufferedReader;
 
     @Before
     public void setUp(){
+        books = new ArrayList<Book>();
+        books.add(new Book("1984", "George Orwell", "1983", out));
+        books.add(new Book("Green Eggs and Ham", "Dr. Seuss", "1904", out));
+        books.add(new Book("Sex at Dawn", "IDK", "1987", out));
         out = mock(PrintStream.class);
+        bufferedReader = mock(BufferedReader.class);
     }
 
 
@@ -29,9 +36,9 @@ public class BibliotecaTest {
     public void shouldPrintOutNamesOfBooks() {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("1984", "George Orwell", "1983", out));
-        books.add(new Book("Green Eggs and Ham", "Dr. Suess", "1904", out));
+        books.add(new Book("Green Eggs and Ham", "Dr. Seuss", "1904", out));
         books.add(new Book("Sex at Dawn", "IDK", "1987", out));
-        Biblioteca biblioteca = new Biblioteca(out, books);
+        Biblioteca biblioteca = new Biblioteca(out, bufferedReader, books);
 
         biblioteca.listBooks();
 
@@ -40,5 +47,15 @@ public class BibliotecaTest {
         verify(out).println(contains("Green Eggs and Ham"));
     }
 
+    @Test
+    public void shouldDeleteBookFromListWhenCheckingOutABook() {
+        Book bookFour = new Book("","","", out);
+        books.add(bookFour);
+        Biblioteca biblioteca = new Biblioteca(out, bufferedReader, books);
 
+        biblioteca.checkOutBook(4);
+
+        assertThat(books.contains(bookFour), is(false));
+    }
+    
 }
