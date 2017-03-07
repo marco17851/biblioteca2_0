@@ -1,5 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -17,15 +15,36 @@ public class Biblioteca {
 
     public void listBooks() {
         out.println("Title | Author | Year");
-        for(Book book : books) {
-            book.printDetails();
+        for(int x = 0; x < books.size(); x++) {
+//            out.print((x+1) + ": ");
+            books.get(x).printDetails();
         }
     }
 
 
-    public void checkOutBook(int choice) {
-        books.remove(choice - 1);
-        out.println("Thank you! Enjoy the book");
+    public void checkOutBook(String userChoice) {
+        int choice = stringToInteger(userChoice);
+
+        if(choice <= books.size() && choice > 0) {
+            books.remove(choice - 1);
+            out.println("Thank you! Enjoy the book");
+        }
+        else{
+            out.println("That book is not available.");
+        }
     }
+
+    private int stringToInteger(String userChoice) {
+        int choice;
+
+        try {
+            choice = Integer.parseInt(userChoice);
+        } catch (NumberFormatException e){
+            choice = -1;
+        }
+
+        return choice;
+    }
+
 
 }

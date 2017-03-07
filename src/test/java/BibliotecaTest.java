@@ -54,7 +54,7 @@ public class BibliotecaTest {
         books.add(bookFour);
         Biblioteca biblioteca = new Biblioteca(out, books);
 
-        biblioteca.checkOutBook(4);
+        biblioteca.checkOutBook("4");
 
         assertThat(books.contains(bookFour), is(false));
     }
@@ -65,9 +65,17 @@ public class BibliotecaTest {
         books.add(bookFour);
         Biblioteca biblioteca = new Biblioteca(out, books);
 
-        biblioteca.checkOutBook(4);
+        biblioteca.checkOutBook("4");
 
         verify(out).println(contains("Thank you! Enjoy the book"));
+    }
+    
+    @Test
+    public void shouldAlertUserOfUnsuccessfulCheckout() {
+        Biblioteca biblioteca = new Biblioteca(out, books);
+
+        biblioteca.checkOutBook("4");
+        verify(out).println(contains("That book is not available."));
     }
 
 }

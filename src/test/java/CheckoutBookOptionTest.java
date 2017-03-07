@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -33,7 +34,7 @@ public class CheckoutBookOptionTest {
 
         checkoutBookOption.execute();
 
-        verify(biblioteca).checkOutBook(anyInt());
+        verify(biblioteca).checkOutBook(anyString());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class CheckoutBookOptionTest {
         when(bufferedReader.readLine()).thenReturn("3");
         checkoutBookOption.execute();
 
-        verify(biblioteca).checkOutBook(3);
+        verify(biblioteca).checkOutBook("3");
     }
 
 

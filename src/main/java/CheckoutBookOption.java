@@ -22,7 +22,7 @@ public class CheckoutBookOption implements Option {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        biblioteca.checkOutBook(Integer.parseInt(bookToCheckout));
+        biblioteca.checkOutBook(bookToCheckout);
     }
 
     public String getName() {
